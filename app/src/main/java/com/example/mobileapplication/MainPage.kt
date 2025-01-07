@@ -95,9 +95,6 @@ class MainPage : AppCompatActivity() {
 
         checkLocationPermission()
 
-        val logoutButton = findViewById<Button>(R.id.btnLogout)
-        logoutButton.setOnClickListener { logoutUser() }
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -249,12 +246,6 @@ class MainPage : AppCompatActivity() {
     }
 
 
-    private fun logoutUser() {
-        auth.signOut()
-        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
-    }
 
     override fun onBackPressed() {
         super.onBackPressed()

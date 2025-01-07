@@ -13,8 +13,8 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
-        android:layout_width="272dp"
-        android:layout_height="52dp"
+        android:layout_width="379dp"
+        android:layout_height="50dp"
         android:layout_margin="16dp"
         android:layout_marginTop="16dp"
         android:queryHint="Search here..."
@@ -23,18 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="94dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/gray"
-        android:onClick="logoutUser"
-        android:text="Logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
