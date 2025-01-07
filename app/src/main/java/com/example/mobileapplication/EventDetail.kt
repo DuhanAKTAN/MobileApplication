@@ -19,6 +19,7 @@ class EventDetail : AppCompatActivity() {
     companion object {
         // Beğenilen etkinliklerin listesi (Uygulama çalıştığı sürece)
         val likedEvents = mutableListOf<Event>()
+        val jointEvents = mutableListOf<Event>()
     }
     private val eventList = mutableListOf<Event>()
     private lateinit var currentEvent: Event
@@ -113,6 +114,20 @@ class EventDetail : AppCompatActivity() {
 
     fun joinOnClick() {
         // Katıl butonu için işlevsellik buraya yazılacak
+        currentEvent?.let { event ->
+            if (jointEvents.contains(event)) {
+                jointEvents.remove(event) // Etkinliği listeden çıkar
+                Toast.makeText(this, "Event removed from joint list!", Toast.LENGTH_SHORT).show()
+            } else {
+                jointEvents.add(event) // Etkinliği listeye ekle
+                Toast.makeText(this, "Event added to joint list!", Toast.LENGTH_SHORT).show()
+            }
+            // SharedPreferences'e kaydet
+            saveLikedEvents()
+
+        } ?: run {
+            Toast.makeText(this, "No event to like/unlike!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun rememberOnClick() {
@@ -143,6 +158,16 @@ class EventDetail : AppCompatActivity() {
         // Etkinliklerin isimlerini alıyoruz
         val likedEventNames = likedEvents.map { it.name }
         editor.putStringSet("liked_event_names", likedEventNames.toSet()) // Etkinlik isimlerini SharedPreferences'a kaydediyoruz
+        editor.apply()
+    }
+
+    fun savejointEvents() {
+        val sharedPreferences = getSharedPreferences("joint_events", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Etkinliklerin isimlerini alıyoruz
+        val jointEventNames = jointEvents.map { it.name }
+        editor.putStringSet("liked_event_names", jointEventNames.toSet()) // Etkinlik isimlerini SharedPreferences'a kaydediyoruz
         editor.apply()
     }
 
